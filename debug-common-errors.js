@@ -24,24 +24,29 @@ Think about which debugging methods you found most useful and how you might appl
 // Description:
 // This program is intended to display a simple prompt in the console but fails to run.
 
-console.log("Welcome to the bootcamp
+console.log("Welcome to the bootcamp");
 
 // What’s Wrong?
-
+/*
+Missing closing quote " and closing parenthesis ) and semicolon ;.
+This is a syntax error: the JavaScript parser can’t read the line.
+*/
 
 // Program B
 // Description:
 // This code attempts to multiply each number in an array by 2 and display the results. However, it crashes at runtime.
 
-let numbers = [2, 4, "eight"];
+let numbers = [2, 4, 8];
 for (let i = 0; i < numbers.length; i++) {
   let doubled = numbers[i] * 2;
   console.log(doubled);
 }
 
 // What’s Wrong?
-
-
+/*
+The array contains a string "eight". Multiplying a string by a number yields NaN.
+This is a runtime/data error: the code runs but produces invalid numeric results for that element.
+*/
 
 // Program C (Logic Error)
 // Description:
@@ -49,14 +54,20 @@ for (let i = 0; i < numbers.length; i++) {
 
 function isPrime(num) {
   if (num < 2) return false;
-  for (let i = 2; i < num; i++) {
+  for (let i = 2; i * i <= num; i++) {
     if (num % i === 0) {
-      return true;  // Supposed to indicate num is NOT prime
+      return false;  // Supposed to indicate num is NOT prime
     }
   }
-  return false; // Supposed to indicate num IS prime
+  return true; // Supposed to indicate num IS prime
 }
 
 console.log(isPrime(7)); // Expected true but gets false
 
 // What’s Wrong?
+/*
+The return values are inverted.
+If we find a divisor, the number is not prime, it should return false.
+If we finish the loop without finding a divisor, the number is prime, it should return true.
+This is a logic error.
+*/
